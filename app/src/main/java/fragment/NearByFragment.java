@@ -19,9 +19,6 @@ import adapter.RecycleAdapter_propertylist;
 import model.CampData;
 
 
-/**
- * Created by Wolf Soft on 10/10/2017.
- */
 
 public class NearByFragment extends Fragment {
 

@@ -1,35 +1,32 @@
 package apiParseing;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
-import model.CampData;
 import model.Weather;
 
 public class JsonParser_Weather extends AsyncTask<Void, Void, Map<String, Weather>> {
     String str, recieveMsg;
 
     Map<String, Weather> datamap = new HashMap<String, Weather>();
-
+    String serviceKey = "uFLie7nCsSmmq6vJqc4rpTWV%2BZrBYJLSNyt5JEC4UI0OVQV6Id0ymnt2aCA2SaPelvvJFy7hrg%2FoSZgibRfZyg%3D%3D"; //서비스 키
     protected Map<String, Weather> doInBackground(Void... voids) {
-        String xmlurl = "http://newsky2.kma.go.kr/service/VilageFrcstDspthDocInfoService/WidOverlandForecast?serviceKey=uFLie7nCsSmmq6vJqc4rpTWV%2BZrBYJLSNyt5JEC4UI0OVQV6Id0ymnt2aCA2SaPelvvJFy7hrg%2FoSZgibRfZyg%3D%3D&regId=11B10101&_type=json";
+        //데이터 공공 포럼에 있는 기상청 정보 parsing (servicekey는 인증받아서 사용해야함.)
+        String xmlurl = "http://newsky2.kma.go.kr/service/VilageFrcstDspthDocInfoService/WidOverlandForecast?serviceKey="+serviceKey+"&regId=11B10101&_type=json";
+
         URL url = null;
         try {
-            url = new URL(xmlurl);
+            url = new URL(xmlurl);//해당 url로 연결
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 

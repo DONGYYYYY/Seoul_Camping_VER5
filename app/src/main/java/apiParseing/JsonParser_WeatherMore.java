@@ -8,21 +8,21 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 
 import model.WeatherMore;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/* RSS parsing하는 OkHttpClient에 대한 opensource사용 */
 public class JsonParser_WeatherMore extends AsyncTask<Void, Void, ArrayList<WeatherMore>> {
 
     ArrayList<WeatherMore> data = new ArrayList<WeatherMore>();
     protected ArrayList<WeatherMore> doInBackground(Void... voids) {
+        //기상청에서 rss형식을 파싱하기 위한 url
         String url = "http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=109";
 
+        //okHttpClient사용
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()

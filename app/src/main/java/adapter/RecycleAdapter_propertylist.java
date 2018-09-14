@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.wolfsoft.propertyui.Property_detail;
 import com.wolfsoft.propertyui.R;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -24,11 +23,9 @@ import apiParseing.JsonParser;
 import model.CampData;
 
 
-/**
- * Created by Rp on 6/14/2016.
- */
 
-public class RecycleAdapter_propertylist extends RecyclerView.Adapter<RecycleAdapter_propertylist.MyViewHolder> {
+/* 해당부분은 opensource이용하여 cardview 생성 */
+public class RecycleAdapter_propertylist extends RecyclerView.Adapter<RecycleAdapter_propertylist.MyViewHolder> { // 카드뷰
 
     Context context;
     List<CampData> CampdataList;

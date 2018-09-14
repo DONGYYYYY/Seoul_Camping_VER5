@@ -1,6 +1,5 @@
 package com.wolfsoft.propertyui;
 
-import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +24,6 @@ public class Intro_Activity extends AppCompatActivity {
             public void run() {
                 finish();
             }
-        }, 2000);
+        }, 2000); // 2초뒤 종료
     }
 }

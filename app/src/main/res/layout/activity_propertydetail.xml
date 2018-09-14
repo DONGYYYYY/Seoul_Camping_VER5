@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#fff"
     android:orientation="vertical">
-
+    <!-- 캠핑장에 대한 상세정보에 해당하는 xml파일 -->
     <customfonts.StickyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
-                    <!-- 캠핑장 이름에 해당하는 부분  ( 현재는 가격 ) -->
+                    <!-- 캠핑장 이름에 해당하는 부분  -->
                     <customfonts.MyTextView_Roboto_Regular
                         android:id="@+id/showname"
                         android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                         android:text="Comming Soon"
                         android:textColor="#606674"
                         android:textSize="16dp" />
-                    <!-- 캠핑장 위치에 해당하는 정보 ( 현재는 위치 ) -->
+                    <!-- 캠핑장 위치에 해당하는 정보  -->
                     <customfonts.MyTextView_Roboto_Regular
                         android:id="@+id/showaddress"
                         android:layout_width="match_parent"

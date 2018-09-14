@@ -130,22 +130,7 @@ public class Property_detail extends AppCompatActivity implements OnMapReadyCall
         pager.setAdapter(fragment);
 
         /* Arraylist변수에 파싱을한 리턴값을 저장 execute()안에 들어가는 변수는 doInBackground()의 매개변수로 전달 */
-        try {
-            list = new Parser_Spring_response().execute(index.getId()).get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        dataList.clear(); // ArrayList내용 비우기
-        adapter.setInit(); // adapter 내부 클래스의 setInit()메소드 호출
-
-        for (int j = 0; j < list.size(); j++) {// db연동 전 listview 확인을 위한 for문
-            Log.i("regdate : " , list.get(j).getRegdate());
-            dataList.add(list.get(j));
-            adapter.addItem(dataList.get(j));
-        }// 리스트 추가
-        listView.setAdapter(adapter);
-        showComment();
+        setAdapter();
 
         showAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,7 +150,7 @@ public class Property_detail extends AppCompatActivity implements OnMapReadyCall
 
         writeButton.setOnClickListener(new View.OnClickListener() { // 작성하기 버튼 클릭시 이벤트
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { //작성하기 버튼 클릭시 이벤트
                 String id;
                 String text;
                 float star;
@@ -184,21 +169,7 @@ public class Property_detail extends AppCompatActivity implements OnMapReadyCall
                         new Parser_Spring().execute(result).get();
                         editComment.setText("");
                         Toast.makeText(Property_detail.this, "작성한 내용이 전달되었습니다.", Toast.LENGTH_SHORT);
-                        try {
-                            list = new Parser_Spring_response().execute(index.getId()).get();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        adapter.setInit();
-                        dataList.clear();
-                        for (int j = 0; j < list.size(); j++) {       // db연동 전 listview 확인을 위한 for문
-                            if (list.get(j).getType().equals(index.getId())) {
-                                dataList.add(list.get(j));
-                                adapter.addItem(dataList.get(j));
-                            }
-                        }// 리스트 추가
-                        listView.setAdapter(adapter);
-                        showComment();
+                        setAdapter();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -388,7 +359,7 @@ public class Property_detail extends AppCompatActivity implements OnMapReadyCall
         ListAdapter listAdapter = listView.getAdapter();
         int totalHeight = 0;
 
-        for (int i = 0; i < listAdapter.getCount(); i++) {
+        for (int i = 0; i < listAdapter.getCount(); i++) { // listadapter에서 설정되어 있는 count값만큼만 길이로 설정
             View listItem = listAdapter.getView(i, null, listView);
 
             listItem.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
@@ -404,5 +375,23 @@ public class Property_detail extends AppCompatActivity implements OnMapReadyCall
         listView.requestLayout();
     }
 
+    public void setAdapter()
+    {
+        try {
+            list = new Parser_Spring_response().execute(index.getId()).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        dataList.clear(); // ArrayList내용 비우기
+        adapter.setInit(); // adapter 내부 클래스의 setInit()메소드 호출
+
+        for (int j = 0; j < list.size(); j++) {// db연동 전 listview 확인을 위한 for문
+            Log.i("regdate : " , list.get(j).getRegdate());
+            dataList.add(list.get(j));
+            adapter.addItem(dataList.get(j));
+        }// 리스트 추가
+        listView.setAdapter(adapter);
+        showComment();
+    }
 }
